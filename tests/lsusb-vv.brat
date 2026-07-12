@@ -13,13 +13,13 @@ setup() {
 
 @test "lsusb -vv: built and installed output is identical" {
 	[ -n "$LSUSB_INSTALLED" ]
-	"$LSUSB_BUILT"     -vv > "$TEST_TMP.built"     2>&1
-	"$LSUSB_INSTALLED" -vv > "$TEST_TMP.installed" 2>&1
+	"$LSUSB_BUILT"     -vv > "$TEST_TMP.built"     2> /dev/null
+	"$LSUSB_INSTALLED" -vv > "$TEST_TMP.installed" 2> /dev/null
 	diff -u "$TEST_TMP.installed" "$TEST_TMP.built"
 }
 
 @test "lsusb -v -v: split flag matches -vv" {
-	"$LSUSB_BUILT" -vv   > "$TEST_TMP.joined" 2>&1
-	"$LSUSB_BUILT" -v -v > "$TEST_TMP.split"  2>&1
+	"$LSUSB_BUILT" -vv   > "$TEST_TMP.joined" 2> /dev/null
+	"$LSUSB_BUILT" -v -v > "$TEST_TMP.split"  2> /dev/null
 	diff -u "$TEST_TMP.joined" "$TEST_TMP.split"
 }
